@@ -1,34 +1,31 @@
 import pytest
 import random
-import string
-
+from random import randint
 
 import session8
+from session8 import function_1_docstring_50_count
+from session8 import function_2_fibonacci
+from session8 import function_3_counter
+from session8 import function_4_counter
+from session8 import add
+from session8 import div
+from session8 import mul
+
+
 import os
 import inspect
 import re
-import math
 import random
-import decimal
-from decimal import Decimal
 
 README_CONTENT_CHECK_FOR = [
-    '__and__',
-    '__or__',
-    '__repr__',
-    '__str__',
-    '__add__',
-    '__eq__',
-    '__float__',
-    '__ge__',
-    '__gt__',
-    '__invertsign__',
-    '__le__',
-    '__lt__',
-    '__mul__',
-    '__sqrt__',
-    '__bool__'
-]
+    'function_1_docstring_50_count',
+    'function_2_fibonacci',
+    'function_3_counter',
+    'function_4_counter',
+    'add',
+    'mul',
+    'div'
+ ]
 
 def test_readme_exists():
     assert os.path.isfile("README.md"), "README.md file missing!"
@@ -69,3 +66,41 @@ def test_function_name_had_cap_letter():
     functions = inspect.getmembers(session8, inspect.isfunction)
     for function in functions:
         assert len(re.findall('([A-Z])', function[0])) == 0, "You have used Capital letter(s) in your function names"
+ 
+def test_function_1_docstring_50_count():
+    check1=function_1_docstring_50_count(function_3_counter)
+    check2=function_1_docstring_50_count(function_4_counter)    
+    assert check1()=="This Function creates a counter for input function and updates the global dictionary times_dict3", "Check function_1_docstring_50_count not working properly"
+    assert check2()=="This Function creates a counter for input function and updates it in given dictionary", "Check function_1_docstring_50_count not working properly"
+
+def test_function_2_fibonacci():
+    check1=function_2_fibonacci()
+    for i in range(10):
+        test=check1()    
+    assert test== 55,"Check function_2_fibonacci "
+ 
+
+def test_function_3_counter():
+    counter_add=function_3_counter(add)
+    counter_mul=function_3_counter(mul)
+    counter_div=function_3_counter(div)    
+    for i in range(5):
+        test1,times_dict3=counter_add(randint(-100,100),randint(-100,100))        
+    for j in range(3):
+        test2,times_dict3=counter_mul(randint(-100,100),randint(-100,100))               
+    for j in range(10):
+       test3,times_dict3=counter_div(randint(-100,100),randint(-100,100))                 
+    assert times_dict3=={'add': 5, 'mul': 3, 'div': 10},"Check function_3_counter "    
+ 
+def test_function_4_counter():
+    times_dict4={'add': 0, 'mul': 0, 'div': 0}
+    counter_add=function_4_counter(add,times_dict4)
+    counter_mul=function_4_counter(mul,times_dict4)
+    counter_div=function_4_counter(div,times_dict4)
+    for i in range(5):
+        test1=counter_add(randint(-100,100),randint(-100,100))
+    for j in range(3):
+        test2=counter_mul(randint(-100,100),randint(-100,100))       
+    for j in range(10):
+       test3=counter_div(randint(-100,100),randint(-100,100))      
+    assert times_dict4=={'add': 5, 'mul': 3, 'div': 10}, "Check function_4_counter "      
