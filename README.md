@@ -1,9 +1,9 @@
 # Readme File for Assignment for Session 8 - Functional Parameter
 ### Created by Sriram Iyengar
 ## Session 4 - Functional Parameter
-- 
-- 
-- 
+- Global and Local Scopes
+- Non Local Scopes 
+- Closures
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Requirment of Assignment
 -
